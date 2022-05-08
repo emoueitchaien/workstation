@@ -10,10 +10,12 @@ import { PersistGate } from 'redux-persist/lib/integration/react'
 import { store, persistor } from '@/store'
 import { DripsyProvider } from 'dripsy'
 import { themeDark, themeLight } from '@/styles/theme'
+import '@/i18n'
 
 const MainPage = () => {
   React.useEffect(() => {
-    const appState = AppState.addEventListener('focus', () => {
+    const status = Platform.OS === 'ios' ? 'change' : 'focus'
+    const appState = AppState.addEventListener(status, () => {
       StatusBar.setBarStyle('dark-content')
       if (Platform.OS === 'android') {
         StatusBar.setBackgroundColor('rgba(0,0,0,0)')

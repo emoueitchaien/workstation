@@ -18,7 +18,6 @@ export interface GlobalTextProps {
     | 'SemiBoldItalic'
   fontName?: string
 }
-
 export interface User {
   id: string
   username: string

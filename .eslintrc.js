@@ -29,6 +29,10 @@ module.exports = {
             element: 'Text',
             message: 'Use <SuperText> from @/components/SuperText instead',
           },
+          {
+            element: 'Image',
+            message: 'Use <SuperImage> from @/components/SuperImage instead',
+          },
         ],
       },
     ],

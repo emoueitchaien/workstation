@@ -12,10 +12,11 @@ const HomePage = () => {
 
   const dataContainer = useStyle(
     () => ({
-      backgroundColor: 'grey',
-      borderWidth: 4,
-      borderColor: 'teal',
-      padding: 10,
+      margin: 10,
+      backgroundColor: '#ecf0f1',
+      borderWidth: 2,
+      borderColor: 'grey',
+      padding: 5,
       justifyContent: 'space-around',
       flexDirection: 'row',
       flexWrap: 'wrap',

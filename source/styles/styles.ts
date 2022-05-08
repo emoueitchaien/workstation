@@ -10,6 +10,9 @@ const globalStyles = StyleSheet.create({
     fontSize: 20,
     color: '#000',
   },
+  textCenter: {
+    textAlign: 'center',
+  },
 })
 
 export default globalStyles

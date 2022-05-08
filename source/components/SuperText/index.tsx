@@ -26,8 +26,8 @@ export function SuperText({
       selectionColor={colors.primary}
       ellipsizeMode="tail"
       // numberOfLines={1}
-      {...props}
       style={customStyle}
+      {...props}
     />
   )
 }
