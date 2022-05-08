@@ -1,44 +1,55 @@
-import * as React from 'react'
+import React from 'react'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import Ionicons from 'react-native-vector-icons/Ionicons'
+import HomeStack from '@/navigations/HomeStack'
+import SettingStack from '@/navigations/SettingStack'
 import { NavigationContainer } from '@react-navigation/native'
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import HomePage from '@/containers/HomePage'
-// import { useColorScheme } from 'react-native'
+import { useDripsyTheme } from 'dripsy'
+import AppHeader from './AppHeader'
 
-const Stack = createNativeStackNavigator()
-
-// const DarkTheme = {
-//   dark: true,
-//   colors: {
-//     primary: '#f0f',
-//     background: 'grey',
-//     card: '#fff',
-//     text: '#000',
-//     border: '#f00',
-//     notification: '#f00',
-//   },
-// }
-
-// const LightTheme = {
-//   dark: false,
-//   colors: {
-//     primary: '#f0f',
-//     background: '#fff',
-//     card: '#fff',
-//     text: '#000',
-//     border: '#f00',
-//     notification: '#f00',
-//   },
-// }
+const Tab = createBottomTabNavigator()
 
 const Navigation = () => {
-  //For using device theme scheme
-  // const scheme = useColorScheme()
+  const { theme } = useDripsyTheme()
   return (
     <NavigationContainer>
-      {/* <NavigationContainer theme={scheme === 'dark' ? DarkTheme : LightTheme}> */}
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={HomePage} />
-      </Stack.Navigator>
+      <Tab.Navigator
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ focused, color, size }) => {
+            let iconName: any
+            if (route.name === 'HOME') {
+              iconName = focused
+                ? 'chatbox-ellipses'
+                : 'chatbox-ellipses-outline'
+            } else if (route.name === 'SETTING') {
+              iconName = focused ? 'bookmarks' : 'bookmarks-outline'
+            }
+
+            // You can return any component that you like here!
+            return <Ionicons name={iconName} size={size} color={color} />
+          },
+          tabBarActiveTintColor: 'black',
+          tabBarInactiveTintColor: 'black',
+          tabBarStyle: {
+            backgroundColor: theme.colors.$bottom,
+            height: 65,
+          },
+          headerStyle: { backgroundColor: theme.colors.$header },
+          headerTitleAlign: 'center',
+          headerTitleStyle: { color: theme.colors.$label },
+          tabBarShowLabel: false,
+          header: props => <AppHeader {...props} />,
+        })}
+      >
+        <Tab.Screen
+          options={{
+            tabBarBadge: 3,
+          }}
+          name="HOME"
+          component={HomeStack}
+        />
+        <Tab.Screen name="SETTING" component={SettingStack} />
+      </Tab.Navigator>
     </NavigationContainer>
   )
 }

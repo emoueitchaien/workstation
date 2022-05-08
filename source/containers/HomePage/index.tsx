@@ -1,18 +1,36 @@
 import React, { useEffect } from 'react'
-import { View } from 'react-native'
 import { SuperText } from '@/components/SuperText'
-import { useLazyGetUserQuery } from '@/api'
+import { useGetUserQuery } from '@/api'
+import { useDripsyTheme, View } from 'dripsy'
+import WrappedView from '@/components/WrappedView'
+import { useStyle } from 'react-native-style-utilities'
 
 const HomePage = () => {
-  const { data } = useLazyGetUserQuery()[1]
+  const { data, error, isLoading } = useGetUserQuery()
+  const { colors } = useDripsyTheme().theme
+  useEffect(() => {})
 
-  useEffect(() => {
-    console.log('User Data', data)
-  })
+  const dataContainer = useStyle(
+    () => ({
+      backgroundColor: 'grey',
+      borderWidth: 4,
+      borderColor: 'teal',
+      padding: 10,
+      justifyContent: 'space-around',
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      alignItems: 'flex-start',
+    }),
+    [],
+  )
   return (
-    <View>
-      <SuperText color="black">Hey HomePage</SuperText>
-    </View>
+    <WrappedView loading={isLoading}>
+      <View style={data && dataContainer}>
+        <SuperText color={colors.$text}>
+          {JSON.stringify(data, null, 4)}
+        </SuperText>
+      </View>
+    </WrappedView>
   )
 }
 

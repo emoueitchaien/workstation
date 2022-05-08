@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text } from 'react-native'
+import { Text } from 'dripsy'
 import { colors } from '@/styles/colors'
 import { useStyle } from 'react-native-style-utilities'
 import { getFontSize, getFontVariant } from '@/utils/fontHelper'
@@ -25,7 +25,7 @@ export function SuperText({
     <Text
       selectionColor={colors.primary}
       ellipsizeMode="tail"
-      numberOfLines={1}
+      // numberOfLines={1}
       {...props}
       style={customStyle}
     />

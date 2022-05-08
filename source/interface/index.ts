@@ -1,6 +1,6 @@
 export interface GlobalTextProps {
   size?: 'small' | 'medium' | 'large' | 'normal'
-  color: string
+  color?: string
   style?: any
   children?: any
   type?:

@@ -1,4 +1,5 @@
 import { GlobalTextProps } from '@/interface'
+import React, { ReactElement } from 'react'
 
 type FontVariantProps = Partial<GlobalTextProps>
 export const getFontVariant = (props: FontVariantProps) => {
@@ -19,4 +20,16 @@ export const getFontSize = (props: FontProps) => {
     default:
       return 16
   }
+}
+
+export const RepeatCharacters = ({
+  children,
+  times,
+}: {
+  children: ReactElement
+  times: number
+}) => {
+  return React.cloneElement(children, {
+    children: children.props.children.repeat(times),
+  })
 }

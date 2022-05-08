@@ -8,7 +8,7 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist'
-import { combineReducers, configureStore, Middleware } from '@reduxjs/toolkit'
+import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import { setupListeners } from '@reduxjs/toolkit/query'
 
 import theme from './theme'
@@ -25,7 +25,7 @@ const reducers = combineReducers({
 const persistConfig = {
   key: 'root',
   storage: reduxStorage,
-  whitelist: ['theme'],
+  whitelist: ['theme', userApi.reducerPath],
 }
 
 const persistedReducer = persistReducer(persistConfig, reducers)
@@ -37,7 +37,7 @@ const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(userApi.middleware as Middleware)
+    }).concat(userApi.middleware)
 
     // if (__DEV__ && !process.env.JEST_WORKER_ID) {
     //   const createDebugger = require('redux-flipper').default

@@ -2,15 +2,16 @@
 import { User } from '@/interface'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
-// Define a service using a base URL and expected endpoints
 export const userApi = createApi({
-  reducerPath: 'api',
-  baseQuery: fetchBaseQuery({ baseUrl: '' }),
+  reducerPath: 'userApi',
+  baseQuery: fetchBaseQuery({
+    baseUrl: 'https://tempapi.proj.me/api/',
+  }),
   endpoints: builder => ({
-    getUser: builder.query<User, string>({
-      query: () => '/user',
+    getUser: builder.query<User, void>({
+      query: () => ({ url: '2kvA6zIlI' }),
     }),
   }),
 })
 
-export const { useLazyGetUserQuery } = userApi
+export const { useGetUserQuery } = userApi
