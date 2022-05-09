@@ -4,7 +4,7 @@ export const getRespectiveHeightWidth = (
   return size === 'banner'
     ? { height: '30%', width: '100%' }
     : size === 'full'
-    ? { height: '100%', width: '100%' }
+    ? { height: '88%', width: '100%' }
     : size === 'small'
     ? { height: '15%', width: '15%' }
     : size === 'large'

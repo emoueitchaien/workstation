@@ -1,32 +1,63 @@
-import React, { useReducer, useState } from 'react'
-import { SuperText } from '@/components/SuperText'
-import { useDripsyTheme } from 'dripsy'
+import React, { useEffect, useState } from 'react'
+import { useDripsyTheme, TextInput } from 'dripsy'
 import WrappedView from '@/components/WrappedView'
-import { useTranslation } from 'react-i18next'
 import { SuperImage } from '@/components/SuperImage'
+import { SuperButton } from '@/components/SuperButton'
+import { useGetImagesQuery } from '@/api'
+import { useStyle } from 'react-native-style-utilities'
 
 const Setting = () => {
   const { colors } = useDripsyTheme().theme
-  const { t } = useTranslation()
-  const [isLoading, load] = useState(true)
+  const [isLoading, load] = useState(false)
+  const [uri, setUri] = useState('')
+  const [count, setCount] = useState(0)
+  const [query, setQuery] = useState('vietnamese%20girls')
+
+  const { data, isLoading: dataLoading } = useGetImagesQuery(query)
+  const searchBarStyle = useStyle(
+    () => ({
+      // height: 60,
+      width: '100%',
+      borderWidth: 1,
+      borderColor: 'grey',
+      padding: 20,
+      // position: 'absolute',
+      top: 0,
+    }),
+    [],
+  )
+  useEffect(() => {
+    if (data !== undefined) {
+      setUri(data?.results[count]?.urls.regular)
+    }
+  }, [data, count, uri])
 
   return (
-    <WrappedView>
+    <WrappedView scrollview>
       <>
-        <SuperText color={colors.$text}>{t('welcome')}</SuperText>
+        <TextInput
+          onSubmitEditing={({ nativeEvent }) => setQuery(nativeEvent.text)}
+          placeholder="Hey"
+          style={searchBarStyle}
+        />
         <SuperImage
           source={{
-            uri: t('profile'),
-            cache: 'immutable',
+            uri: uri,
           }}
-          onProgress={e =>
-            console.log('PROGRESS', e.nativeEvent.loaded / e.nativeEvent.total)
-          }
+          // onProgress={e =>
+          //   console.log('PROGRESS', e.nativeEvent.loaded / e.nativeEvent.total)
+          // }
           onError={() => load(false)}
           onLoadEnd={() => load(false)}
           onLoadStart={() => load(true)}
           resizeMode="cover"
           size="full"
+        />
+        <SuperButton
+          onPress={() => setCount(Math.floor(Math.random() * 10))}
+          title="Next"
+          color={colors.$button}
+          size="large"
         />
       </>
     </WrappedView>

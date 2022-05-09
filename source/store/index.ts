@@ -27,7 +27,7 @@ const reducers = combineReducers({
 const persistConfig = {
   key: 'root',
   storage: reduxStorage,
-  whitelist: ['theme', userApi.reducerPath, 'language'],
+  whitelist: ['theme', 'language'],
 }
 
 const persistedReducer = persistReducer(persistConfig, reducers)

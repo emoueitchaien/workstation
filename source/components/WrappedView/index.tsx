@@ -10,15 +10,7 @@ type ViewProps = {
   style?: StyleProp<ViewStyle>
   scrollview?: boolean
   loading?: boolean
-} & typeof defaultProps
-
-const defaultProps = {
-  children: <></>,
-  style: {},
-  scrollview: false,
-  loading: false,
 }
-
 const WrappedView = (props: ViewProps) => {
   const { theme } = useDripsyTheme()
   const { bottom: safeAreaBottom } = useSafeAreaInsets()
@@ -32,6 +24,7 @@ const WrappedView = (props: ViewProps) => {
     return (
       <LoadingProgress isLoading={props.loading}>
         <ScrollView
+          contentContainerSx={viewStyle}
           scrollEnabled={props.loading ? false : true}
           showsVerticalScrollIndicator={false}
           contentContainerStyle={{ paddingBottom: safeAreaBottom }}
@@ -49,5 +42,4 @@ const WrappedView = (props: ViewProps) => {
   )
 }
 
-WrappedView.defaultProps = defaultProps
 export default WrappedView

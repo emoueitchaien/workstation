@@ -6,6 +6,7 @@ const darkColors = {
   $header: '#f16725',
   $bottom: '#fad1bd',
   $label: 'white',
+  $button: '#229fbe',
 }
 const themeDark = makeTheme({
   colors: darkColors,
@@ -20,6 +21,7 @@ const lightColors: typeof darkColors = {
   $header: '#fad1bd',
   $bottom: '#f16725',
   $label: 'white',
+  $button: '#229fbe',
 }
 const themeLight = {
   ...themeDark,
