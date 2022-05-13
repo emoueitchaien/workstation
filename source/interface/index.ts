@@ -17,6 +17,7 @@ export interface GlobalTextProps {
     | 'SemiBold'
     | 'SemiBoldItalic'
   fontName?: string
+  onPress?: () => void
 }
 export interface User {
   id: string
