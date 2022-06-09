@@ -11,7 +11,7 @@ const Setting = () => {
   const [isLoading, load] = useState(false)
   const [uri, setUri] = useState('')
   const [count, setCount] = useState(0)
-  const [query, setQuery] = useState('vietnamese%20girls')
+  const [query, setQuery] = useState('dumplings')
 
   const { data, isLoading: dataLoading } = useGetImagesQuery(query)
   const searchBarStyle = useStyle(

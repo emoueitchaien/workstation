@@ -22,6 +22,9 @@ export const objValueSelector = (from: any, ...selectors: any) =>
       .reduce((prev: any, cur: any) => prev && prev[cur], from),
   )
 
+export const rating = (stars: number) =>
+  '★★★★★☆☆☆☆☆'.slice(5 - stars, 10 - stars)
+
 // const obj = {
 //   selector: { to: { val: 'val to select' } },
 //   target: [1, 2, { a: 'test' }],

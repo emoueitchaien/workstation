@@ -7,7 +7,7 @@ import AutoLink from '@/components/AutoLink'
 
 const HomePage = () => {
   const { colors } = useDripsyTheme().theme
-  useEffect(() => {})
+  useEffect(() => {}, [])
 
   return (
     <WrappedView>
